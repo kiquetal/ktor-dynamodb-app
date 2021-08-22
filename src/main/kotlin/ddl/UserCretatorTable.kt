@@ -8,6 +8,7 @@ import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema
 import software.amazon.awssdk.enhanced.dynamodb.model.CreateTableEnhancedRequest
 import software.amazon.awssdk.services.dynamodb.model.ProvisionedThroughput
+import software.amazon.awssdk.utils.AttributeMap
 
 abstract class GenericTableCreator<T>(private val tableName:String,private val client:DynamoDbEnhancedAsyncClient,
 
@@ -16,9 +17,10 @@ abstract class GenericTableCreator<T>(private val tableName:String,private val c
     private  val WRITE_CAPACITY_UNITS = 1L
     abstract fun createEnhancedRequest():CreateTableEnhancedRequest
     val log = LoggerFactory.getLogger(GenericTableCreator::class.java)
+    protected lateinit var table:DynamoDbAsyncTable<T>
      fun createTable() {
-        val t: DynamoDbAsyncTable<T> = client.table(tableName, TableSchema.fromBean(clan))
-        t.createTable(createEnhancedRequest())
+        table = client.table(tableName, TableSchema.fromBean(clan))
+        table.createTable(createEnhancedRequest())
             .thenAccept {
                 log.info("Table ${clan.simpleName} created")
             }
@@ -37,9 +39,12 @@ abstract class GenericTableCreator<T>(private val tableName:String,private val c
 
 }
 
-class UserCreatorTable: GenericTableCreator<CustomerPersist>("customerTable",Clients.enhancedDynamoClient(Clients.dynamoLocalClient()),CustomerPersist::class.java) {
-    override fun createEnhancedRequest(): CreateTableEnhancedRequest {
 
+
+
+class UserCreatorTable: GenericTableCreator<CustomerPersist>("customerTable",Clients.enhancedDynamoClient(Clients.dynamoLocalClient()),CustomerPersist::class.java)
+{
+    override fun createEnhancedRequest(): CreateTableEnhancedRequest {
         return CreateTableEnhancedRequest
             .builder()
             .provisionedThroughput(provisionedThroughput)

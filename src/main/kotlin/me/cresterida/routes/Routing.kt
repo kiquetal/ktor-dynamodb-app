@@ -13,7 +13,8 @@ fun Routing.myRoutes() {
     val l = LoggerFactory.getLogger(this::class.java)
     get("/kiquetal") {
 
-        UserCreatorTable().createTable()
+       val creator =  UserCreatorTable()
+        creator.createTable()
 
         call.respond(listOf(User("kiquetal-soy-yo", 23)))
     }
