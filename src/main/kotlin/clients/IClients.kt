@@ -10,7 +10,7 @@ object Clients {
     fun dynamoLocalClient(): DynamoDbAsyncClient {
         return DynamoDbAsyncClient.builder()
             .region(Region.US_EAST_1)
-            .endpointOverride(URI.create("http://localhost:8080"))
+            .endpointOverride(URI.create("http://localhost:8000"))
             .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create("secret", "secret")))
             .build()
 

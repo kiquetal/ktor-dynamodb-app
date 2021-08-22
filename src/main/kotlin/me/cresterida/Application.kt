@@ -1,5 +1,6 @@
 package me.cresterida
 
+import ddl.UserCreatorTable
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import me.cresterida.plugins.*
