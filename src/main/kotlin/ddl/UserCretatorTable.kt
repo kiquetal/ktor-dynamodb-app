@@ -1,7 +1,7 @@
 package ddl
 
 import clients.Clients
-import entities.CustomerPersist
+import entities.Entity
 import org.slf4j.LoggerFactory
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbAsyncTable
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient
@@ -42,7 +42,7 @@ abstract class GenericTableCreator<T>(private val tableName:String,private val c
 
 
 
-class UserCreatorTable: GenericTableCreator<CustomerPersist>("customerTable",Clients.enhancedDynamoClient(Clients.dynamoLocalClient()),CustomerPersist::class.java)
+class UserCreatorTable: GenericTableCreator<Entity>(Entity::class.java.simpleName  ,Clients.enhancedDynamoClient(Clients.dynamoLocalClient()),Entity::class.java)
 {
     override fun createEnhancedRequest(): CreateTableEnhancedRequest {
         return CreateTableEnhancedRequest

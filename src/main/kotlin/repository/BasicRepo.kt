@@ -1,5 +1,6 @@
 package repository
 
+import entities.Entity
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbAsyncTable
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema
@@ -11,25 +12,12 @@ interface BasicRepo<T> {
 }
 
 
-abstract class DynamoDbRepo<T>(protected val tableName:String,val klass:Class<T>,val client:DynamoDbEnhancedAsyncClient): BasicRepo<T>
+abstract class DynamoDbRepo<T>(private val tableName:String, private val klass:Class<T>, private val client:DynamoDbEnhancedAsyncClient): BasicRepo<T>
 {
-
-     lateinit var dynamoTable : DynamoDbAsyncTable<T>
-
+    lateinit var dynamoTable:DynamoDbAsyncTable<T>
     init {
-        this.dynamoTable = client.table(tableName, TableSchema.fromBean(klass))
-    }
+         this.dynamoTable  = client.table(tableName, TableSchema.fromBean(klass))
 
-      override fun deleteEntiy(e: T) {
-        TODO("Not yet implemented")
-    }
-
-    override fun addEntity(e: T) {
-        println("hola")
-    }
-
-    override fun findEntity(e: String) {
-        TODO("Not yet implemented")
     }
 
 }
