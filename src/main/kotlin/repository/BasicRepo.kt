@@ -20,12 +20,12 @@ abstract class DynamoDbRepo<T>(protected val tableName:String,val klass:Class<T>
         this.dynamoTable = client.table(tableName, TableSchema.fromBean(klass))
     }
 
-    override fun deleteEntiy(e: T) {
+      override fun deleteEntiy(e: T) {
         TODO("Not yet implemented")
     }
 
     override fun addEntity(e: T) {
-        TODO("Not yet implemented")
+        println("hola")
     }
 
     override fun findEntity(e: String) {
