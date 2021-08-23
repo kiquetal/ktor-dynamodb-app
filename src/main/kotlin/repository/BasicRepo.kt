@@ -12,6 +12,7 @@ interface BasicRepo<T> {
 }
 
 
+
 abstract class DynamoDbRepo<T>(private val tableName:String, private val klass:Class<T>, private val client:DynamoDbEnhancedAsyncClient): BasicRepo<T>
 {
     lateinit var dynamoTable:DynamoDbAsyncTable<T>
