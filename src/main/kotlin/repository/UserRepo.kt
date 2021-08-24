@@ -3,12 +3,10 @@ import entities.Entity
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient
 import software.amazon.awssdk.enhanced.dynamodb.Key
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema
-import software.amazon.awssdk.enhanced.dynamodb.model.GetItemEnhancedRequest
-import software.amazon.awssdk.enhanced.dynamodb.model.PutItemEnhancedRequest
-import software.amazon.awssdk.enhanced.dynamodb.model.QueryConditional
-import software.amazon.awssdk.enhanced.dynamodb.model.QueryEnhancedRequest
+import software.amazon.awssdk.enhanced.dynamodb.model.*
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue
 import software.amazon.awssdk.services.dynamodb.model.PutItemRequest
+import java.util.function.Consumer
 
 class UserRepo(private val client: DynamoDbEnhancedAsyncClient) :DynamoDbRepo<Entity>(Entity::class.java.simpleName,Entity::class.java,client) {
     override fun getKey(e: Entity): Key {
@@ -21,12 +19,19 @@ class UserRepo(private val client: DynamoDbEnhancedAsyncClient) :DynamoDbRepo<En
             .build()
         val itemEnhancedRequest=GetItemEnhancedRequest.builder()
             .key(key).build()
-
-
-            val indx = this.dynamoTable.index("myIndice")
-
-            val q = QueryConditional.
        return this.dynamoTable.getItem(itemEnhancedRequest).join()
+    }
+    fun getAllEntities(): ArrayList<Entity> {
+        val list=ArrayList<Entity>()
+        val scanEnhancedRequest= ScanEnhancedRequest.builder()
+            .limit(10).build();
+
+        val iterator = this.dynamoTable.scan(scanEnhancedRequest)
+        println(iterator.toString())
+        iterator.subscribe(Consumer { page->
+            page.items().forEach(list::add)
+        }).join();
+        return list;
     }
 
 
