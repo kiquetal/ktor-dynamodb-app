@@ -1,5 +1,6 @@
 package clients
 
+import repository.UserRepo
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient
@@ -21,4 +22,8 @@ object Clients {
             .build()
     }
 
+}
+object Repos {
+
+    fun userRepo()=UserRepo(Clients.enhancedDynamoClient(Clients.dynamoLocalClient()))
 }

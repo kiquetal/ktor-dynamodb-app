@@ -1,6 +1,7 @@
 package me.cresterida.routes
 
 import clients.Clients
+import clients.Repos
 import com.google.gson.Gson
 import ddl.UserCreatorTable
 import entities.Entity
@@ -16,13 +17,11 @@ import java.time.Instant
 fun Routing.myRoutes() {
 
     val l = LoggerFactory.getLogger(this::class.java)
-    get("/kiquetal") {
+    get("/create") {
 
-    //   val creator =  UserCreatorTable()
-    //    creator.createTable()
+       val creator =  UserCreatorTable()
+        creator.createTable()
 
-        val entity=Entity(pk = "ba405",sk = "firefighter",date = Instant.now())
-        UserRepo(Clients.enhancedDynamoClient(Clients.dynamoLocalClient())).addEntity(entity)
         call.respond(listOf(User("kiquetal-soy-yo", 23)))
     }
     get("/lista") {
@@ -30,4 +29,10 @@ fun Routing.myRoutes() {
         call.respond(UserRepo(Clients.enhancedDynamoClient(Clients.dynamoLocalClient()))
             .getAllEntities())
     }
+    get("/add")
+    {
+        val u = Entity(pk = "kiquetal-6", sk = "12", Instant.now())
+        call.respond(Repos.userRepo().addEntity(u))
+    }
+
 }
