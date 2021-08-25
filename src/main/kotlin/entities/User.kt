@@ -29,7 +29,8 @@ data class Entity(
 
 class Mien:AttributeConverter<Instant>{
     override fun transformFrom(input: Instant?): AttributeValue {
-        TODO("Not yet implemented")
+
+        return AttributeValue.builder().build()
     }
 
     override fun transformTo(input: AttributeValue?): Instant {
