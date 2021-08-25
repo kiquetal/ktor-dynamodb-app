@@ -21,23 +21,21 @@ class UserRepo(private val client: DynamoDbEnhancedAsyncClient) :DynamoDbRepo<En
     }
     fun findEntityByPk(key:String): Entity
     {
-        val k = Key.builder().partitionValue(key)
-            .build()
-
-        val itemEnhancedRequest=GetItemEnhancedRequest.builder()
-        .key(k).build()
-
-      val q= QueryEnhancedRequest.builder().queryConditional(
+        val q= QueryEnhancedRequest.builder().queryConditional(
         QueryConditional.
                     sortGreaterThan(
                                 Key.builder()
                                     .partitionValue(key)
-                                    .sortValue("1").build())
+                                    .sortValue(".").build())
       ).build()
 
-         val  l= arrayListOf<Entity>()
+        val  l= arrayListOf<Entity>()
         this.dynamoTable.query(q).items().subscribe(l::add).join()
-        return  l[0];
+        return when {
+            l.size>0 -> l[0]
+            else -> Entity()
+
+        }
 
     }
     fun getAllEntities(): ArrayList<Entity> {
