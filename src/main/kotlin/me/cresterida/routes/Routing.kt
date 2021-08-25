@@ -15,7 +15,6 @@ import repository.UserRepo
 import java.time.Instant
 
 fun Routing.myRoutes() {
-
     val l = LoggerFactory.getLogger(this::class.java)
     get("/create") {
 
@@ -31,7 +30,7 @@ fun Routing.myRoutes() {
     }
     get("/add")
     {
-        val u = Entity(pk = "kiquetal-6", sk = "12", Instant.now())
+        val u = Entity(pk = "kiquetal-27", sk = "12", Instant.parse("2020-06-25T01:12:13.46702Z"))
         call.respond(Repos.userRepo().addEntity(u))
     }
 
