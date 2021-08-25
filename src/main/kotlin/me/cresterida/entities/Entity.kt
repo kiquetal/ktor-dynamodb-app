@@ -1,5 +1,5 @@
-package entities
-import converters.MyInstanceConverter
+package me.cresterida.entities
+import me.cresterida.converters.MyInstanceConverter
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.*
 import java.time.Instant
 

@@ -1,4 +1,4 @@
-package converters
+package me.cresterida.converters
 
 import software.amazon.awssdk.enhanced.dynamodb.AttributeConverter
 import software.amazon.awssdk.enhanced.dynamodb.AttributeValueType

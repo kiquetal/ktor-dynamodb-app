@@ -1,17 +1,13 @@
-package ddl
+package me.cresterida.ddl
 
-import clients.Clients
-import entities.Entity
+import me.cresterida.clients.Clients
+import me.cresterida.entities.Entity
 import org.slf4j.LoggerFactory
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbAsyncTable
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema
 import software.amazon.awssdk.enhanced.dynamodb.model.CreateTableEnhancedRequest
 import software.amazon.awssdk.services.dynamodb.model.ProvisionedThroughput
-import software.amazon.awssdk.utils.AttributeMap
-import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 abstract class GenericTableCreator<T>(private val tableName:String,private val client:DynamoDbEnhancedAsyncClient,
 
