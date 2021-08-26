@@ -36,7 +36,7 @@ fun Routing.myRoutes() {
     get("/entity/{entityId}") {
 
         val entityKey = call.parameters["entityId"]?:"no";
-        l.info(String.format("Buscar entity=%s",entityKey));
+        l.info(String.format("Buscar entity=%s ver-nuevo a",entityKey));
         call.respond(Repos.userRepo().findEntityByPk(entityKey))
 
 
