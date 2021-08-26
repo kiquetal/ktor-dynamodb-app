@@ -3,7 +3,6 @@
     A very simple app using ktor and testing
     some fun techniques 
 
-:paraguay:
 
 ##### Tech /in use
 
@@ -18,3 +17,4 @@
     - auth/jwt
     - locations
 
+:paraguay: @kiquetal :sunglasses:
