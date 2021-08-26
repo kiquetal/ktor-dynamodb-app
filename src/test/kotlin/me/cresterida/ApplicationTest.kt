@@ -16,6 +16,10 @@ import io.ktor.request.*
 import kotlin.test.*
 import io.ktor.server.testing.*
 import me.cresterida.plugins.*
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 class ApplicationTest {
     @Test
@@ -26,5 +30,12 @@ class ApplicationTest {
                 assertEquals("Hello World!", response.content)
             }
         }
+    }
+
+    @Test
+    fun dateTest()
+    {
+        val l= LocalDateTime.now(ZoneId.of("UTC"))
+        println(l.format(DateTimeFormatter.ISO_DATE_TIME))
     }
 }

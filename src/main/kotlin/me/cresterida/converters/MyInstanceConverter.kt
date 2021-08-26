@@ -6,31 +6,35 @@ import software.amazon.awssdk.enhanced.dynamodb.EnhancedType
 import software.amazon.awssdk.enhanced.dynamodb.internal.converter.attribute.EnhancedAttributeValue
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue
 import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
 
-class MyInstanceConverter: AttributeConverter<Instant> {
-    override fun transformFrom(input: Instant?): AttributeValue {
+class MyInstanceConverter: AttributeConverter<LocalDateTime> {
+    override fun transformFrom(input: LocalDateTime?): AttributeValue {
 
-        val format = DateTimeFormatter.ISO_DATE_TIME.withZone(ZoneId.of("UTC"))
+        val format = DateTimeFormatter.ISO_DATE_TIME.
+        withZone(ZoneId.of("UTC"))
             .format(input);
 
-        return EnhancedAttributeValue.fromString(format).toAttributeValue()
+        println("here "+ format)
+        return AttributeValue.builder().s(format).build()
     }
 
-    override fun transformTo(input: AttributeValue?): Instant {
-
-        return Instant.from(
-            DateTimeFormatter.ISO_DATE_TIME.withZone(ZoneId.of("UTC"))
-            .parse(input?.s()))
+    override fun transformTo(input: AttributeValue?): LocalDateTime {
 
 
+        val formatter = DateTimeFormatter.ISO_DATE_TIME.
+        withZone(ZoneId.of("UTC"));
+
+        return LocalDateTime.parse(input?.s(),formatter)
 
     }
 
-    override fun type(): EnhancedType<Instant> {
-        return EnhancedType.of(Instant::class.java);
+    override fun type(): EnhancedType<LocalDateTime> {
+        return EnhancedType.of(LocalDateTime::class.java);
     }
 
     override fun attributeValueType(): AttributeValueType {

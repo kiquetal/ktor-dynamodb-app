@@ -11,6 +11,9 @@ import io.ktor.routing.*
 import org.slf4j.LoggerFactory
 import me.cresterida.repository.UserRepo
 import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 fun Routing.myRoutes() {
     val l = LoggerFactory.getLogger(this::class.java)
@@ -27,7 +30,7 @@ fun Routing.myRoutes() {
     }
     get("/add")
     {
-        val u = Entity(pk = "kiquetal-27", sk = "12", Instant.parse("2020-06-25T01:12:13.46702Z"))
+        val u = Entity(pk = "kiquetal-27", sk = "12", LocalDateTime.now())
         call.respond(Repos.userRepo().addEntity(u))
     }
     get("/entity/{entityId}") {

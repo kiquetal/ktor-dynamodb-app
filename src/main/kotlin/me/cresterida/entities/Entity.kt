@@ -1,7 +1,10 @@
 package me.cresterida.entities
+import com.google.gson.annotations.SerializedName
 import me.cresterida.converters.MyInstanceConverter
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.*
 import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 data class User(val name:String,var age:Int)
 
@@ -13,7 +16,8 @@ data class Entity(
     @get:DynamoDbSortKey
     var sk: String? = null,
     @get:DynamoDbConvertedBy(MyInstanceConverter::class)
-    var date:Instant?=null,
+
+    var date:LocalDateTime?=null,
 
 )
 
