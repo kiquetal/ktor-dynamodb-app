@@ -5,6 +5,7 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.*
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.ZonedDateTime
 
 data class User(val name:String,var age:Int)
 
@@ -17,7 +18,7 @@ data class Entity(
     var sk: String? = null,
     @get:DynamoDbConvertedBy(MyInstanceConverter::class)
 
-    var date:LocalDateTime?=null,
+    var date:ZonedDateTime?=null,
 
 )
 
