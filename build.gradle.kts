@@ -20,17 +20,17 @@ repositories {
 }
 
 dependencies {
-    implementation("io.ktor:ktor-server-core:$ktor_version")
-    implementation("io.ktor:ktor-auth:$ktor_version")
-    implementation("io.ktor:ktor-auth-jwt:$ktor_version")
-    implementation("io.ktor:ktor-gson:$ktor_version")
-    implementation("io.ktor:ktor-server-netty:$ktor_version")
-    implementation("ch.qos.logback:logback-classic:$logback_version")
-    testImplementation("io.ktor:ktor-server-tests:$ktor_version")
-    testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
-    implementation(platform("software.amazon.awssdk:bom:2.17.24"))
-    implementation("software.amazon.awssdk:dynamodb")
-    implementation("software.amazon.awssdk:dynamodb-enhanced")
+    implementation(Deps.ktor_core)
+    implementation(Deps.ktor_auth)
+    implementation(Deps.ktor_jwt)
+    implementation(Deps.ktor_gson)
+    implementation(Deps.ktor_netty)
+    implementation(Deps.logback)
+    testImplementation(Deps.ktor_test)
+    testImplementation(Deps.kotlin_test)
+    implementation(platform(Deps.aws_bom))
+    implementation(Deps.aws_dynamo)
+    implementation(Deps.aws_dynamo_enhanced)
 
 }
 
