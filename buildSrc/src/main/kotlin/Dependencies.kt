@@ -11,4 +11,6 @@ object Deps {
     val logback by lazy { "ch.qos.logback:logback-classic:${Versions.logback_version}"}
     val ktor_test by lazy { "io.ktor:ktor-server-tests:${Versions.ktor_version}" }
     val kotlin_test by lazy { "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin_version}"}
+    val ktor_locations by lazy { "io.ktor:ktor-locations:${Versions.ktor_version}" }
+
 }

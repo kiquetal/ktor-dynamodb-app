@@ -31,6 +31,7 @@ dependencies {
     implementation(platform(Deps.aws_bom))
     implementation(Deps.aws_dynamo)
     implementation(Deps.aws_dynamo_enhanced)
+    implementation(Deps.ktor_locations)
 
 }
 
