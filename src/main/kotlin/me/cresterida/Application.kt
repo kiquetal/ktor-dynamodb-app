@@ -10,5 +10,6 @@ fun main() {
       //  configureSecurity()
         configureHTTP()
         configureSerialization()
+        status()
     }.start(wait = true)
 }

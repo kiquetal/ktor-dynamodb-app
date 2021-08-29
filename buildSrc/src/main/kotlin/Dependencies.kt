@@ -12,5 +12,6 @@ object Deps {
     val ktor_test by lazy { "io.ktor:ktor-server-tests:${Versions.ktor_version}" }
     val kotlin_test by lazy { "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin_version}"}
     val ktor_locations by lazy { "io.ktor:ktor-locations:${Versions.ktor_version}" }
+    val ktor_status_pages by lazy { "io.ktor:ktor-locations:${Versions.ktor_version}"}
 
 }
