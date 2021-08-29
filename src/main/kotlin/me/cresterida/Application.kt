@@ -5,7 +5,7 @@ import io.ktor.server.netty.*
 import me.cresterida.plugins.*
 
 fun main() {
-    embeddedServer(Netty, port = 8082, host = "0.0.0.0",watchPaths = listOf("classes")) {
+    embeddedServer(Netty, port = 8081 , host = "127.0.0.1",watchPaths = listOf("classes")) {
         configureRouting()
       //  configureSecurity()
         configureHTTP()

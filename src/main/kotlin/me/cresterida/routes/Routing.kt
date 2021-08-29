@@ -50,4 +50,4 @@ data class EntityById(val entityId:String, val page:Int, val count:Int)
 data class RepoAdd(val pk:String,val sk:String)
 
 @Location("/repo/list")
-data class RepoList(val count:Int?,val page:Int?)
+data class RepoList(val count:Int?=10,val page:Int?=5)
