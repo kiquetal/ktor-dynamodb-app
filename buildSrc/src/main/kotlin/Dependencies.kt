@@ -13,5 +13,6 @@ object Deps {
     val kotlin_test by lazy { "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin_version}"}
     val ktor_locations by lazy { "io.ktor:ktor-locations:${Versions.ktor_version}" }
     val ktor_status_pages by lazy { "io.ktor:ktor-locations:${Versions.ktor_version}"}
+    val bcrypt by lazy { "org.mindrot:jbcrypt:0.4"}
 
 }

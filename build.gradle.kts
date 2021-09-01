@@ -33,6 +33,7 @@ dependencies {
     implementation(Deps.aws_dynamo_enhanced)
     implementation(Deps.ktor_locations)
     implementation(Deps.ktor_status_pages)
+    implementation(Deps.bcrypt)
 
 }
 
