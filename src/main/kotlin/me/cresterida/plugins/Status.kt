@@ -6,7 +6,6 @@ import io.ktor.response.*
 import me.cresterida.exceptions.Exception
 import software.amazon.awssdk.services.dynamodb.model.ResourceNotFoundException
 import java.lang.RuntimeException
-
 fun Application.status()
 {
     install(StatusPages)
