@@ -1,6 +1,7 @@
 package me.cresterida.clients
 
 import me.cresterida.repository.EntityRepo
+import me.cresterida.repository.UserRepo
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient

@@ -5,6 +5,7 @@ import me.cresterida.entities.Entity
 import me.cresterida.entities.User
 import io.ktor.application.*
 import io.ktor.locations.*
+import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import me.cresterida.ddl.UserCreatorTable
@@ -32,6 +33,19 @@ fun Routing.myRoutes() {
                     val entityKey = entityById.entityId
             l.info(String.format("Buscar entity=%s ver-nuevo a", entityKey));
             call.respond(Repos.entityRepo().findEntityByPk(entityKey))
+    }
+    post("/users") {
+
+        val body = call.receive<User>()
+
+        try {
+            Repos.userRepo().addEntity(body)
+            call.respond(body)
+        }
+        catch (e:Exception)
+        {
+            call.respond(hashMapOf("error" to e.message))
+        }
     }
 
 }

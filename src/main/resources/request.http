@@ -1,0 +1,10 @@
+POST http://localhost:8081/users
+Content-Type: application/json
+
+{
+  "email": "kiquetal@gmail.com",
+  "passwd": "new_password5"
+}
+
+
+
