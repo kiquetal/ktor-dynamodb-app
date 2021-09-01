@@ -1,5 +1,7 @@
 package me.cresterida.repository
+import me.cresterida.dto.RequestEntity
 import me.cresterida.entities.Entity
+import org.mindrot.jbcrypt.BCrypt
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient
 import software.amazon.awssdk.enhanced.dynamodb.Key
 import software.amazon.awssdk.enhanced.dynamodb.model.*
@@ -51,6 +53,11 @@ class UserRepo(private val client: DynamoDbEnhancedAsyncClient) :DynamoDbRepo<En
         return list;
     }
 
+    fun addLoginUser(userRequest : RequestEntity)
+    {
+        val hashedPassword = BCrypt.hashpw(userRequest.password,BCrypt.gensalt(12))
+        
+    }
 
 }
 

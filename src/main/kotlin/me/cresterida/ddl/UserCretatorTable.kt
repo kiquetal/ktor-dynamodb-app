@@ -2,6 +2,7 @@ package me.cresterida.ddl
 
 import me.cresterida.clients.Clients
 import me.cresterida.entities.Entity
+import me.cresterida.entities.User
 import org.slf4j.LoggerFactory
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbAsyncTable
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient
@@ -41,7 +42,7 @@ abstract class GenericTableCreator<T>(private val tableName:String,private val c
 
 
 
-class UserCreatorTable: GenericTableCreator<Entity>(Entity::class.java.simpleName  ,Clients.enhancedDynamoClient(Clients.dynamoLocalClient()),Entity::class.java)
+class EntityCreatorTable: GenericTableCreator<Entity>(Entity::class.java.simpleName  ,Clients.enhancedDynamoClient(Clients.dynamoLocalClient()),Entity::class.java)
 {
     override fun createEnhancedRequest(): CreateTableEnhancedRequest {
         return CreateTableEnhancedRequest
@@ -52,5 +53,13 @@ class UserCreatorTable: GenericTableCreator<Entity>(Entity::class.java.simpleNam
     }
 }
 
+class UserCreatorTable: GenericTableCreator<User>(User::class.java.simpleName  ,Clients.enhancedDynamoClient(Clients.dynamoLocalClient()),User::class.java)
+{
+    override fun createEnhancedRequest(): CreateTableEnhancedRequest {
+        return CreateTableEnhancedRequest
+            .builder()
+            .provisionedThroughput(provisionedThroughput)
+            .build()
 
-
+    }
+}

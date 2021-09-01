@@ -1,4 +1,4 @@
 package me.cresterida.dto
 
-class RequestEntity {
-}
+data class RequestEntity (val name:String, val password:String)
+
