@@ -21,7 +21,7 @@ data class User(
      @get:DynamoDbPartitionKey
      var email: String? = null,
      @get:DynamoDbSortKey
-     var passWd: String? =null,
+     var passwd: String? =null,
      @get:DynamoDbConvertedBy(MyInstanceConverter::class)
      var modifiedTime: ZonedDateTime?=null,
     @get:DynamoDbConvertedBy(MyInstanceConverter::class)

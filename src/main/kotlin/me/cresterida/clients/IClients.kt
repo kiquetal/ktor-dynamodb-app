@@ -1,6 +1,6 @@
 package me.cresterida.clients
 
-import me.cresterida.repository.UserRepo
+import me.cresterida.repository.EntityRepo
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient
@@ -25,5 +25,6 @@ object Clients {
 }
 object Repos {
 
+    fun entityRepo()=EntityRepo(Clients.enhancedDynamoClient(Clients.dynamoLocalClient()))
     fun userRepo()=UserRepo(Clients.enhancedDynamoClient(Clients.dynamoLocalClient()))
 }
